@@ -7,7 +7,7 @@ public class MooveService
     private readonly DapperContext _context;
     public void AddMoove(Moove moove)
     {
-        var sql = "insert into moove(productid,tosklad,times)value(@productid,@tosklad,times)";
+        var sql = "insert into moove(productid,tosklad,times)value(@productid,@tosklad,@times)";
         int sk = _context.Connection().QueryFirstOrDefault<int>("select skladid from product as p where p.id = @productid");
         _context.Connection().Execute(sql, moove);
         int sid = _context.Connection().QueryFirstOrDefault<int>("select max(id) from moove");
